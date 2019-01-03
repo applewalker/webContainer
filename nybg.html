@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        .divStyle {
+            width: 1000px;
+            height: 1000px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to bottom, #f06100, #810404);
+        }
+        
+        .fontStyle {
+            font-size: 154px;
+            line-height: 165px;
+            height: 665px;
+            background-repeat: no-repeat;
+            -webkit-background-clip: text;
+            background-image: url("https://www.apple.com/v/iphone-xs/d/images/overview/copy_texture_1_medium.jpg");
+            color: transparent;
+        }
+    </style>
+</head>
+
+<body style="width:1000px;height:1000px;margin: 0px;">
+    <div id="mydiv" class="divStyle">
+        <div class="fontStyle">新的一年<br/>祝<br/>生活明朗<br/>万物可爱<br/></div>
+    </div>
+    <div style="display:none;">
+        <br/>
+        <br/>
+        <br/>
+        <button onclick="saveImg()">点击生成图片</button>
+    </div>
+</body>
+<script src="D:\Environment\JS\dom-to-image.min.js"></script>
+<script>
+    function saveImg() {
+        var node = document.getElementById('mydiv');
+
+        domtoimage.toPng(node)
+            .then(function(dataUrl) {
+                var img = new Image();
+                img.src = dataUrl;
+                document.body.appendChild(img);
+            })
+            .catch(function(error) {
+                console.error('oops, something went wrong!', error);
+            });
+    }
+</script>
+
+</html>
